@@ -1,5 +1,6 @@
 const conexao = require('../database/conexao');
-const crypto = require('crypto');
+
+const generateUniqueId = require('../utils/generateUniqueId');
 
 module.exports ={
    
@@ -12,7 +13,7 @@ module.exports ={
     async create(request,response){
         //desestruturação para garantir que usuário não irá mandar dados que não queremos 
     const {nome,email,whatsapp,cidade,uf}=request.body;
-    const id = crypto.randomBytes(4).toString('HEX');
+    const id = generateUniqueId();
     //const data= request.body;
     //console.log(data);
     await conexao('ongs').insert({
